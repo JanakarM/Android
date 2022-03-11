@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingLeft="@dimen/activity_margin"
+    android:paddingTop="@dimen/dimen_10"
+    android:paddingRight="@dimen/activity_margin"
+    android:paddingBottom="@dimen/dimen_10">
+
+    <TextView
+        android:id="@+id/txt_view_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/note_list_text" />
+
+    <TextView
+        android:id="@+id/txt_view_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="9dp"
+        android:textColor="#454040"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/edit_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="0dp"
+        android:clickable="true"
+        android:contentDescription="@string/edit"
+        android:focusable="true"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+</RelativeLayout>

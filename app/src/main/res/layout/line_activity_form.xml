@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LineFormActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="188dp"
+        tools:layout_editor_absoluteY="229dp">
+
+        <EditText
+            android:id="@+id/line_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/line_name"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/line_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/place"
+            android:autofillHints="" />
+
+        <Spinner
+            android:id="@+id/day_of_week_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <Button
+            android:id="@+id/btn_add_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="addLine"
+            android:text="@string/add_line" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

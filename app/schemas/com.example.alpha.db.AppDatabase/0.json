@@ -1,0 +1,260 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 0,
+    "identityHash": "988a6cb2d3395d366ea5f045257e095b",
+    "entities": [
+      {
+        "tableName": "User",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER PRIMARY KEY AUTOINCREMENT, `user_name` TEXT, `mobile` TEXT, `email` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "user_id",
+            "columnName": "user_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user_name",
+            "columnName": "user_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mobile",
+            "columnName": "mobile",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "user_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_User_user_name",
+            "unique": true,
+            "columnNames": [
+              "user_name"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_User_user_name` ON `${TABLE_NAME}` (`user_name`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Line",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`line_name` TEXT NOT NULL, `place` TEXT NOT NULL, `day_of_week` TEXT NOT NULL, `active` INTEGER NOT NULL, `line_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "line_name",
+            "columnName": "line_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "place",
+            "columnName": "place",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dayOfWeek",
+            "columnName": "day_of_week",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "active",
+            "columnName": "active",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "line_id",
+            "columnName": "line_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "line_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Line_line_name",
+            "unique": true,
+            "columnNames": [
+              "line_name"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Line_line_name` ON `${TABLE_NAME}` (`line_name`)"
+          },
+          {
+            "name": "index_Line_place",
+            "unique": true,
+            "columnNames": [
+              "place"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Line_place` ON `${TABLE_NAME}` (`place`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Party",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`party_id` INTEGER PRIMARY KEY AUTOINCREMENT, `party_name` TEXT NOT NULL, `line_id` INTEGER NOT NULL, `amount_to_be_paid` INTEGER NOT NULL, `total_amount` INTEGER NOT NULL, `interest` INTEGER, `date_in_millis` INTEGER NOT NULL, `active` INTEGER NOT NULL, `party_type` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "party_id",
+            "columnName": "party_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "party_name",
+            "columnName": "party_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "line_id",
+            "columnName": "line_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amount_to_be_paid",
+            "columnName": "amount_to_be_paid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "total_amount",
+            "columnName": "total_amount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "interest",
+            "columnName": "interest",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "date_in_millis",
+            "columnName": "date_in_millis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "active",
+            "columnName": "active",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "party_type",
+            "columnName": "party_type",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "party_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Party_party_name",
+            "unique": true,
+            "columnNames": [
+              "party_name"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Party_party_name` ON `${TABLE_NAME}` (`party_name`)"
+          },
+          {
+            "name": "index_Party_line_id",
+            "unique": false,
+            "columnNames": [
+              "line_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Party_line_id` ON `${TABLE_NAME}` (`line_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PartyTransaction",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`transaction_id` INTEGER PRIMARY KEY AUTOINCREMENT, `party_id` INTEGER NOT NULL, `time_in_millis` INTEGER NOT NULL, `amount_paid` INTEGER NOT NULL, `remaining_amount` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "transaction_id",
+            "columnName": "transaction_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "party_id",
+            "columnName": "party_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "time_in_millis",
+            "columnName": "time_in_millis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amount_paid",
+            "columnName": "amount_paid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "remaining_amount",
+            "columnName": "remaining_amount",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "transaction_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_PartyTransaction_party_id",
+            "unique": false,
+            "columnNames": [
+              "party_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_PartyTransaction_party_id` ON `${TABLE_NAME}` (`party_id`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '988a6cb2d3395d366ea5f045257e095b')"
+    ]
+  }
+}
